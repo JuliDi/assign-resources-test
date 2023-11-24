@@ -1,0 +1,16 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+# replace STM32L432KCUx with your chip as listed in `probe-run --list-chips`
+#runner = "probe-run --chip STM32L432KCUx"
+runner = "probe-run --chip STM32H743ZITxQ"
+#runner = "probe-run --chip STM32F767ZITx"
+
+rustflags = [
+  "-C", "link-arg=-Tlink.x",
+  "-C", "link-arg=-Tdefmt.x",
+]
+
+[build]
+target = "thumbv7em-none-eabihf"
+
+[env]
+DEFMT_LOG = "info"
